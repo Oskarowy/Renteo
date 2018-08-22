@@ -39,9 +39,20 @@ namespace Renteo.Controllers
             return Content("id=" + id);
         }
 
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            var vehicles = GetVehicles();
+
+            return View(vehicles);
+        }
+
+        private IEnumerable<Vehicle> GetVehicles()
+        {
+            return new List<Vehicle>
+            {
+                new Vehicle { Id = 1, Make = "Opel Insignia" },
+                new Vehicle { Id = 2, Make = "Ford Mondeo" },
+             };
         }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Renteo.Models.Vehicle>
+@{
+    ViewBag.Title = "Vehicles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vehicles</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Vehicle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vehicle in Model)
+        {
+            <tr>
+                <td>@vehicle.Make @vehicle.Model</td>
+            </tr>
+        }
+    </tbody>
+</table>

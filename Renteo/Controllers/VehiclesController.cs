@@ -1,4 +1,5 @@
 ﻿using Renteo.Models;
+using Renteo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,29 @@ namespace Renteo.Controllers
                 Model = "Insignia"
             };
 
-            return View(vehicle);
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1" },
+                new Customer { Name = "Customer 2" }
+            };
+
+            var viewModel = new RandomVehicleViewModel
+            {
+                Vehicle = vehicle,
+                Customers = customers
+            };
+
+            return View(viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return Content("id=" + id);
+        }
+
+        public ActionResult Index()
+        {
+            return View();
         }
     }
 }

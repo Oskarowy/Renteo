@@ -1,9 +1,24 @@
-﻿@model Renteo.Models.Vehicle
+﻿@model Renteo.ViewModels.RandomVehicleViewModel
 
 @{
+    var name = Model.Vehicle.Make + " " + Model.Vehicle.Model;
     ViewBag.Title = "Random";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Make @Model.Model</h2>
+<h2>@name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <p>No one has rented this vehicle before.</p>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
 

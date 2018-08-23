@@ -10,6 +10,8 @@ namespace Renteo.Models
     public class ApplicationUser : IdentityUser
     {
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<MembershipType> MembershipTypes { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

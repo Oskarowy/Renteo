@@ -9,7 +9,7 @@ namespace Renteo.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(Renteo.Models.ApplicationDbContext context)

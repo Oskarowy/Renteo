@@ -13,7 +13,7 @@ namespace Renteo.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201808231834141_Initial"; }
+            get { return "201808231916488_Initial"; }
         }
         
         string IMigrationMetadata.Source

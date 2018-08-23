@@ -1,5 +1,6 @@
 ﻿using Renteo.Models;
 using Renteo.ViewModels;
+using System.Data.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,49 +11,37 @@ namespace Renteo.Controllers
 {
     public class VehiclesController : Controller
     {
-        // GET: Vehicles
-        public ActionResult Random()
+        private ApplicationDbContext _context;
+
+        protected override void Dispose(bool disposing)
         {
-            var vehicle = new Vehicle()
-            {
-                Make = "Opel",
-                Model = "Insignia"
-            };
-
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Customer 1" },
-                new Customer { Name = "Customer 2" }
-            };
-
-            var viewModel = new RandomVehicleViewModel
-            {
-                Vehicle = vehicle,
-                Customers = customers
-            };
-
-            return View(viewModel);
+            _context.Dispose();
         }
 
-        public ActionResult Edit(int id)
+        public VehiclesController()
         {
-            return Content("id=" + id);
+            _context = new ApplicationDbContext();
         }
 
         public ViewResult Index()
         {
-            var vehicles = GetVehicles();
+            var vehicles = _context.Vehicles.Include(v => v.VehicleType).ToList();
 
             return View(vehicles);
         }
 
-        private IEnumerable<Vehicle> GetVehicles()
+        public ActionResult Details(int id)
         {
-            return new List<Vehicle>
-            {
-                new Vehicle { Id = 1, Make = "Opel Insignia" },
-                new Vehicle { Id = 2, Make = "Ford Mondeo" },
-             };
+            var vehicle = _context
+                .Vehicles
+                .Include(v => v.VehicleType)
+                .SingleOrDefault(v => v.Id == id);
+
+            if (vehicle == null)
+                return HttpNotFound();
+
+            return View(vehicle);
         }
+
     }
 }

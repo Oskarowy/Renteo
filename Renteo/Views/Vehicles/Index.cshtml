@@ -6,18 +6,28 @@
 
 <h2>Vehicles</h2>
 
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Vehicle</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var vehicle in Model)
-        {
+@if (!Model.Any())
+{
+    <p>We don't have any vehicles yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
             <tr>
-                <td>@vehicle.Make @vehicle.Model</td>
+                <th>Vehicle</th>
+                <th>Type of body</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var vehicle in Model)
+            {
+                var name = vehicle.Make + " " + vehicle.Model;
+                <tr>
+                    <td>@Html.ActionLink(name, "Details", "Vehicles", new { id = vehicle.Id }, null)</td>
+                    <td>@vehicle.VehicleType.BodyType</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}   

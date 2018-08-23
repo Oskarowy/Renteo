@@ -238,6 +238,10 @@
     <Compile Include="Migrations\201808232009270_PopulateVehicleTypes.Designer.cs">
       <DependentUpon>201808232009270_PopulateVehicleTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808232013168_PopulateVehicles.cs" />
+    <Compile Include="Migrations\201808232013168_PopulateVehicles.Designer.cs">
+      <DependentUpon>201808232013168_PopulateVehicles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -359,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808232009270_PopulateVehicleTypes.resx">
       <DependentUpon>201808232009270_PopulateVehicleTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808232013168_PopulateVehicles.resx">
+      <DependentUpon>201808232013168_PopulateVehicles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

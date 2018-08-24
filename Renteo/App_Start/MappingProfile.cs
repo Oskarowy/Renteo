@@ -12,12 +12,16 @@ namespace Renteo.App_Start
     {
         public MappingProfile()
         {
-            CreateMap<Customer, CustomerDto>()
-                .ForMember( c => c.Id, opt => opt.Ignore());
-            CreateMap<CustomerDto, Customer>();
-            CreateMap<Vehicle, VehicleDto>()
+            // Domain to Dto
+            CreateMap<Customer, CustomerDto>();
+            CreateMap<Vehicle, VehicleDto>();
+                
+
+            // Dto to Domain
+            CreateMap<CustomerDto, Customer>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
-            CreateMap<VehicleDto, Vehicle>();
+            CreateMap<VehicleDto, Vehicle>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
 
         }
     }

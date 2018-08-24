@@ -20,9 +20,12 @@ namespace Renteo.Controllers.API
         }
 
         // GET/api/customers
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
-            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDtos = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+
+            return Ok(customerDtos);
+
         }
 
         // GET api/customers/1
@@ -69,7 +72,7 @@ namespace Renteo.Controllers.API
             
             _context.SaveChanges();
 
-            return Ok(customerDto);
+            return Ok();
         }
 
         // DELETE /api/customers/1

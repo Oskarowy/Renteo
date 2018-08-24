@@ -5924,12 +5924,15 @@ button.close {
   background-color: #000;
 }
 .modal-backdrop.fade {
-  filter: alpha(opacity=0);
-  opacity: 0;
+  //filter: alpha(opacity=0);
+  opacity: 0.5 !important;
+}
+.modal-backdrop .fade .in {
+  opacity: 0.5 !important;
 }
 .modal-backdrop.in {
-  filter: alpha(opacity=50);
-  opacity: .5;
+  //filter: alpha(opacity=50);
+  opacity: .5 !important;
 }
 .modal-header {
   padding: 15px;

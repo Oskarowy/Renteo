@@ -20,9 +20,12 @@ namespace Renteo.Controllers.API
         }
 
         // GET/api/vehicles
-        public IEnumerable<VehicleDto> GetVehicles()
+        public IHttpActionResult GetVehicles()
         {
-            return _context.Vehicles.ToList().Select(Mapper.Map<Vehicle, VehicleDto>);
+            var vehicleDtos = _context.Vehicles.ToList().Select(Mapper.Map<Vehicle, VehicleDto>);
+
+            return Ok(vehicleDtos);
+
         }
 
         // GET api/vehicles/1
@@ -69,7 +72,7 @@ namespace Renteo.Controllers.API
 
             _context.SaveChanges();
 
-            return Ok(vehicleDto);
+            return Ok();
         }
 
         // DELETE /api/vehicles/1

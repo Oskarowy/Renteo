@@ -44,13 +44,12 @@ namespace Renteo.Controllers
             return View(vehicle);
         }
 
-        public ActionResult New()
+        public ViewResult New()
         {
             var vehicleTypes = _context.VehicleTypes.ToList();
 
             var viewModel = new VehicleFormViewModel
             {
-                Vehicle = new Vehicle(),
                 VehicleTypes = vehicleTypes
             };
 
@@ -58,8 +57,19 @@ namespace Renteo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Vehicle vehicle)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new VehicleFormViewModel(vehicle)
+                {
+                    VehicleTypes = _context.VehicleTypes.ToList()
+                };
+
+                return View("VehicleForm", viewModel);
+            }
+
             if (vehicle.Id == 0)
                 _context.Vehicles.Add(vehicle);
             else
@@ -74,16 +84,7 @@ namespace Renteo.Controllers
                 
             }
 
-            try
-            {
                 _context.SaveChanges();
-            }
-            catch (DbEntityValidationException e)
-            {
-
-                Console.WriteLine(e);
-            }
-
        
             return RedirectToAction("Index", "Vehicles");
         }
@@ -95,9 +96,8 @@ namespace Renteo.Controllers
             if (vehicle == null)
                 return HttpNotFound();
 
-            var viewModel = new VehicleFormViewModel
+            var viewModel = new VehicleFormViewModel(vehicle)
             {
-                Vehicle = vehicle,
                 VehicleTypes = _context.VehicleTypes.ToList()
             };
 

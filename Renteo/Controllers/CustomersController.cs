@@ -26,9 +26,7 @@ namespace Renteo.Controllers
         // GET: Customers
         public ViewResult Index()
         {
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
+            return View();
         }
 
         public ActionResult Details(int id)

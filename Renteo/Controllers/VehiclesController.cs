@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity.Validation;
 
 namespace Renteo.Controllers
 {
@@ -49,7 +50,55 @@ namespace Renteo.Controllers
 
             var viewModel = new VehicleFormViewModel
             {
+                Vehicle = new Vehicle(),
                 VehicleTypes = vehicleTypes
+            };
+
+            return View("VehicleForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Vehicle vehicle)
+        {
+            if (vehicle.Id == 0)
+                _context.Vehicles.Add(vehicle);
+            else
+            {
+                var vehicleInDb = _context.Vehicles.Single(v => v.Id == vehicle.Id);
+
+                vehicleInDb.Make = vehicle.Make;
+                vehicleInDb.Model = vehicle.Model;
+                vehicleInDb.ProductionYear = vehicle.ProductionYear;
+                vehicleInDb.FuelType = vehicle.FuelType;
+                vehicleInDb.VehicleTypeId = vehicle.VehicleTypeId;
+                
+            }
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+
+                Console.WriteLine(e);
+            }
+
+       
+            return RedirectToAction("Index", "Vehicles");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var vehicle = _context.Vehicles.SingleOrDefault(v => v.Id == id);
+
+            if (vehicle == null)
+                return HttpNotFound();
+
+            var viewModel = new VehicleFormViewModel
+            {
+                Vehicle = vehicle,
+                VehicleTypes = _context.VehicleTypes.ToList()
             };
 
             return View("VehicleForm", viewModel);

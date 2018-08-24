@@ -7,7 +7,7 @@
 <h2>Vehicles</h2>
 
 <div style="margin-bottom: 15px">
-    @Html.ActionLink("New Vehicle", "New", "Vehicles", new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Vehicle", "New", "Vehicles", null, new { @class = "btn btn-primary" })
 </div>
 @if (!Model.Any())
 {
@@ -27,7 +27,7 @@ else
             {
                 var name = vehicle.Make + " " + vehicle.Model;
                 <tr>
-                    <td>@Html.ActionLink(name, "Details", "Vehicles", new { id = vehicle.Id }, null)</td>
+                    <td>@Html.ActionLink(name, "Edit", "Vehicles", new { id = vehicle.Id }, null)</td>
                     <td>@vehicle.VehicleType.BodyType</td>
                 </tr>
             }

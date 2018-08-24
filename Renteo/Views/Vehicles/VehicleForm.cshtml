@@ -1,13 +1,14 @@
 ﻿@model Renteo.ViewModels.VehicleFormViewModel
 
 @{
-    ViewBag.Title = "New Vehicle";
+    var title = (Model.Vehicle == null) ? "New Vehicle" : "Edit Vehicle";
+    ViewBag.Title = @title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Vehicle</h2>
+<h2>@title</h2>
 
-@using (@Html.BeginForm("New", "Vehicles"))
+@using (@Html.BeginForm("Save", "Vehicles"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Vehicle.Make)

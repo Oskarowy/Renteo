@@ -242,6 +242,10 @@
     <Compile Include="Migrations\201808232013168_PopulateVehicles.Designer.cs">
       <DependentUpon>201808232013168_PopulateVehicles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808240415103_NewFormToAddVehicles.cs" />
+    <Compile Include="Migrations\201808240415103_NewFormToAddVehicles.Designer.cs">
+      <DependentUpon>201808240415103_NewFormToAddVehicles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -254,6 +258,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\RandomVehicleViewModel.cs" />
+    <Compile Include="ViewModels\VehicleFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-litera.css" />
@@ -322,6 +327,7 @@
     <Content Include="Views\Vehicles\Index.cshtml" />
     <Content Include="Views\Vehicles\Details.cshtml" />
     <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Vehicles\VehicleForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -369,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808232013168_PopulateVehicles.resx">
       <DependentUpon>201808232013168_PopulateVehicles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808240415103_NewFormToAddVehicles.resx">
+      <DependentUpon>201808240415103_NewFormToAddVehicles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

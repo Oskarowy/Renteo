@@ -1,0 +1,32 @@
+﻿@model Renteo.ViewModels.VehicleFormViewModel
+
+@{
+    ViewBag.Title = "New Vehicle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>New Vehicle</h2>
+
+@using (@Html.BeginForm("New", "Vehicles"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.Make)
+        @Html.TextBoxFor(m => m.Vehicle.Make, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.Model)
+        @Html.TextBoxFor(m => m.Vehicle.Model, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.ProductionYear)
+        @Html.TextBoxFor(m => m.Vehicle.ProductionYear, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Vehicle.VehicleTypeId)
+        @Html.DropDownListFor(m => m.Vehicle.VehicleTypeId, new SelectList(Model.VehicleTypes, "Id", "BodyType"), "Select Vehicle Type", new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Vehicle.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+

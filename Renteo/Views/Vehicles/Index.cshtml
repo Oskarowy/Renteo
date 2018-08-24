@@ -6,6 +6,9 @@
 
 <h2>Vehicles</h2>
 
+<div style="margin-bottom: 15px">
+    @Html.ActionLink("New Vehicle", "New", "Vehicles", new { @class = "btn btn-primary" })
+</div>
 @if (!Model.Any())
 {
     <p>We don't have any vehicles yet.</p>

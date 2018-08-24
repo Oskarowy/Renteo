@@ -43,5 +43,17 @@ namespace Renteo.Controllers
             return View(vehicle);
         }
 
+        public ActionResult New()
+        {
+            var vehicleTypes = _context.VehicleTypes.ToList();
+
+            var viewModel = new VehicleFormViewModel
+            {
+                VehicleTypes = vehicleTypes
+            };
+
+            return View("VehicleForm", viewModel);
+        }
+
     }
 }

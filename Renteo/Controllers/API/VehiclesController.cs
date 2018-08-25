@@ -2,6 +2,7 @@
 using Renteo.Dtos;
 using Renteo.Models;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,7 +23,10 @@ namespace Renteo.Controllers.API
         // GET/api/vehicles
         public IHttpActionResult GetVehicles()
         {
-            var vehicleDtos = _context.Vehicles.ToList().Select(Mapper.Map<Vehicle, VehicleDto>);
+            var vehicleDtos = _context.Vehicles
+                .Include( c => c.VehicleType)
+                .ToList()
+                .Select(Mapper.Map<Vehicle, VehicleDto>);
 
             return Ok(vehicleDtos);
 

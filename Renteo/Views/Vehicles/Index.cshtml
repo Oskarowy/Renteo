@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Renteo.Models.Vehicle>
+﻿
 @{
     ViewBag.Title = "Vehicles";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,28 +9,80 @@
 <div style="margin-bottom: 15px">
     @Html.ActionLink("New Vehicle", "New", "Vehicles", null, new { @class = "btn btn-primary" })
 </div>
-@if (!Model.Any())
+
+<table id="vehicles" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Vehicle</th>
+            <th>Production year</th>
+            <th>Type of body</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
 {
-    <p>We don't have any vehicles yet.</p>
+    <script>
+        $(document).ready(function () {
+            var table = $('#vehicles').DataTable({
+                ajax: {
+                    url: "/api/vehicles",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, vehicle) {
+                            return "<a href='/vehicles/edit/" + vehicle.id + "'>" + vehicle.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "productionYear"
+                    },
+                    {
+                        data: "vehicleType.bodyType"
+                    },
+                    
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-danger js-delete' data-vehicle-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#vehicles").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm({
+                    title: "Delete Vehicle?",
+                    closeButton: false,
+                    message: "Are you sure you want to delete this vehicle? This cannot be undone.",
+                    buttons: {
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> Cancel'
+                        },
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> Delete',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/vehicles/" + button.attr("data-vehicle-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 }
-else
-{
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>Vehicle</th>
-                <th>Type of body</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var vehicle in Model)
-            {
-                var name = vehicle.Make + " " + vehicle.Model;
-                <tr>
-                    <td>@Html.ActionLink(name, "Edit", "Vehicles", new { id = vehicle.Id }, null)</td>
-                    <td>@vehicle.VehicleType.BodyType</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}   

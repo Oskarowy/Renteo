@@ -26,9 +26,10 @@ namespace Renteo.Controllers
 
         public ViewResult Index()
         {
-            var vehicles = _context.Vehicles.Include(v => v.VehicleType).ToList();
+            if (User.IsInRole(RoleName.CanManageVehicles))
+                return View("List");
 
-            return View(vehicles);
+            return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)
@@ -44,6 +45,7 @@ namespace Renteo.Controllers
             return View(vehicle);
         }
 
+        [Authorize(Roles = RoleName.CanManageVehicles)]
         public ViewResult New()
         {
             var vehicleTypes = _context.VehicleTypes.ToList();
@@ -89,6 +91,7 @@ namespace Renteo.Controllers
             return RedirectToAction("Index", "Vehicles");
         }
 
+        [Authorize(Roles = RoleName.CanManageVehicles)]
         public ActionResult Edit(int id)
         {
             var vehicle = _context.Vehicles.SingleOrDefault(v => v.Id == id);

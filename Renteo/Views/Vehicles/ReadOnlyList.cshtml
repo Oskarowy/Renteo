@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Vehicles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vehicles</h2>
+
+<table id="vehicles" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Vehicle</th>
+            <th>Production year</th>
+            <th>Type of body</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $('#vehicles').DataTable({
+                ajax: {
+                    url: "/api/vehicles",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, vehicle) {
+                            return "<a href='/vehicles/details/" + vehicle.id + "'>" + vehicle.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "productionYear"
+                    },
+                    {
+                        data: "vehicleType.bodyType"
+                    },
+                   
+                ]
+            });
+        });
+    </script>
+}

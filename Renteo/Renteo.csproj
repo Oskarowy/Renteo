@@ -278,6 +278,10 @@
     <Compile Include="Migrations\201808242012580_AddValidationToForms.Designer.cs">
       <DependentUpon>201808242012580_AddValidationToForms.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808261848122_SeedUsers.cs" />
+    <Compile Include="Migrations\201808261848122_SeedUsers.Designer.cs">
+      <DependentUpon>201808261848122_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -655,6 +659,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808242012580_AddValidationToForms.resx">
       <DependentUpon>201808242012580_AddValidationToForms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808261848122_SeedUsers.resx">
+      <DependentUpon>201808261848122_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -65,6 +65,10 @@ namespace Renteo.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Numer prawa jazdy")]
+        public string DrivingLicense { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }

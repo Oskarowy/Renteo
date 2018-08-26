@@ -45,6 +45,7 @@ namespace Renteo.Controllers.API
 
         // POST /api/vehicles
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageVehicles)]
         public IHttpActionResult CreateVehicle(VehicleDto vehicleDto)
         {
             if (!ModelState.IsValid)
@@ -62,6 +63,7 @@ namespace Renteo.Controllers.API
 
         // PUT /api/vehicles/1
         [HttpPut]
+        [Authorize(Roles = RoleName.CanManageVehicles)]
         public IHttpActionResult UpdateVehicle(int id, VehicleDto vehicleDto)
         {
             if (!ModelState.IsValid)
@@ -81,6 +83,7 @@ namespace Renteo.Controllers.API
 
         // DELETE /api/vehicles/1
         [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageVehicles)]
         public IHttpActionResult DeleteVehicle(int id)
         {
             var vehicleInDb = _context.Vehicles.SingleOrDefault(c => c.Id == id);

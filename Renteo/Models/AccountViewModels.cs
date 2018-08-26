@@ -8,6 +8,11 @@ namespace Renteo.Models
         [Required]
         [Display(Name = "Adres e-mail")]
         public string Email { get; set; }
+
+
+        [Required]
+        [Display(Name = "Numer prawa jazdy")]
+        public string DrivingLicense { get; set; }
     }
 
     public class ExternalLoginListViewModel

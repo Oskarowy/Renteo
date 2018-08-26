@@ -308,6 +308,10 @@
     <Compile Include="Migrations\201808262042574_AddRentalsModel.Designer.cs">
       <DependentUpon>201808262042574_AddRentalsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808262050411_AddIsRentedPropertyToVehicle.cs" />
+    <Compile Include="Migrations\201808262050411_AddIsRentedPropertyToVehicle.Designer.cs">
+      <DependentUpon>201808262050411_AddIsRentedPropertyToVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -697,6 +701,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808262042574_AddRentalsModel.resx">
       <DependentUpon>201808262042574_AddRentalsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808262050411_AddIsRentedPropertyToVehicle.resx">
+      <DependentUpon>201808262050411_AddIsRentedPropertyToVehicle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

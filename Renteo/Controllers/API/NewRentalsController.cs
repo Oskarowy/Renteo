@@ -21,22 +21,27 @@ namespace Renteo.Controllers.API
         [HttpPost]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
+
             var customer = _context.Customers.Single(
                 c => c.Id == newRental.CustomerId);
 
             var vehicles = _context.Vehicles.Where(
-                v => newRental.VehicleIds.Contains(v.Id));
+                v => newRental.VehicleIds.Contains(v.Id)).ToList();
 
             foreach (var vehicle in vehicles)
             {
-                var rental = new Rental
+                if (!vehicle.IsRented)
                 {
-                    Customer = customer,
-                    Vehicle = vehicle,
-                    DateRented = DateTime.Now
-                };
+                    var rental = new Rental
+                    {
+                        Customer = customer,
+                        Vehicle = vehicle,
+                        DateRented = DateTime.Now
+                    };
 
-                _context.Rentals.Add(rental);
+                    vehicle.IsRented = true;
+                    _context.Rentals.Add(rental);
+                }
             }
 
             _context.SaveChanges();

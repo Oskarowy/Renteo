@@ -29,5 +29,7 @@ namespace Renteo.Models
         [Display(Name = "Vehicle Type")]
         [Required]
         public byte VehicleTypeId { get; set; }
+
+        public bool IsRented { get; set; } = false;
     }
 }

@@ -21,14 +21,20 @@ namespace Renteo.Controllers.API
         }
 
         // GET/api/vehicles
-        public IHttpActionResult GetVehicles()
+        public IHttpActionResult GetVehicles(string query = null)
         {
-            var vehicleDtos = _context.Vehicles
-                .Include( c => c.VehicleType)
+            var vehiclesQuery = _context.Vehicles
+                .Include(c => c.VehicleType)
+                .Where(c => c.IsRented == false);
+
+            if (!String.IsNullOrWhiteSpace(query))
+                vehiclesQuery = vehiclesQuery.Where(c => c.Make.Contains(query));
+
+            var vehicleDto = vehiclesQuery
                 .ToList()
                 .Select(Mapper.Map<Vehicle, VehicleDto>);
 
-            return Ok(vehicleDtos);
+            return Ok(vehicleDto);
 
         }
 

@@ -11,6 +11,7 @@ namespace Renteo
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
+                        "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/datatables/jquery.dataTables.js",
                         "~/Scripts/datatables/dataTables.bootstrap4.js",
                         "~/Scripts/jquery-{version}.js"));
@@ -26,6 +27,7 @@ namespace Renteo
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-litera.css",
+                      "~/Content/typeahead.css",
                       "~/Content/datatables/css/datatables.bootstrap4.css",
                       "~/Content/site.css"));
         }

@@ -16,6 +16,7 @@
             <th>Vehicle</th>
             <th>Production year</th>
             <th>Type of body</th>
+            <th>Rental status</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -28,7 +29,7 @@
         $(document).ready(function () {
             var table = $('#vehicles').DataTable({
                 ajax: {
-                    url: "/api/vehicles",
+                    url: "/api/vehicles/all",
                     dataSrc: ""
                 },
                 columns: [
@@ -44,7 +45,13 @@
                     {
                         data: "vehicleType.bodyType"
                     },
-                    
+                    {
+                        data: "isRented",
+                        render: function (data) {
+                            if (data) return "Rented";
+                            else return "Free";
+                        }
+                    },
                     {
                         data: "id",
                         render: function (data) {

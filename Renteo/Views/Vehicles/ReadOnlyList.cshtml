@@ -9,9 +9,12 @@
 <table id="vehicles" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Vehicle</th>
+            <th>Make and Model</th>
             <th>Production year</th>
             <th>Type of body</th>
+            <th>Fuel type</th>
+            <th>Rental status</th>
+            <th>Expected return</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -23,7 +26,7 @@
         $(document).ready(function () {
             var table = $('#vehicles').DataTable({
                 ajax: {
-                    url: "/api/vehicles",
+                    url: "/api/vehicles/all",
                     dataSrc: ""
                 },
                 columns: [
@@ -39,6 +42,24 @@
                     {
                         data: "vehicleType.bodyType"
                     },
+                    {
+                        data: "fuelType"
+                    },
+                    {
+                        data: "isRented",
+                        render: function (data) {
+                            if (data) return "<span class='rented'>Rented</span>";
+                            else return "<a area='' class='btn btn-success' href='/rentals/new/'>Free</a>";
+;
+                        }
+                    },
+                    {
+                        data: "isRented",
+                        render: function (data) {
+                            if (data) return new Date().toISOString().substring(0, 10);
+                            else return "";
+                        }
+                    }
                    
                 ]
             });

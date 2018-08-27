@@ -36,3 +36,11 @@ input.error {
 .validation-summary-errors {
     color: red;
 }
+
+.rented {
+    color: red;
+}
+
+.forrent {
+    color: green;
+}

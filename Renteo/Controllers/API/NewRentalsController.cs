@@ -41,7 +41,7 @@ namespace Renteo.Controllers.API
 
                     vehicle.IsRented = true;
                     _context.Rentals.Add(rental);
-                }
+                } 
             }
 
             _context.SaveChanges();

@@ -16,7 +16,7 @@
     <div class="form-group">
         <label>Vehicle</label>
         <div class="tt-container">
-            <input id="vehicle" name="vehicle" data-rule-atLeastOneVehicle="true" required type="text" value="" class="form-control" />
+            <input id="vehicle" name="vehicle" data-rule-atLeastOneVehicle="true" type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -49,7 +49,7 @@
             });
 
             $('#customer').typeahead({
-                minLength: 2,
+                minLength: 1,
                 highlight: true
             }, {
                     name: 'customers',
@@ -69,7 +69,7 @@
             });
 
             $('#vehicle').typeahead({
-                minLength: 2,
+                minLength: 1,
                 highlight: true
             }, {
                     name: 'vehicles',
@@ -84,7 +84,7 @@
                 });
 
             $.validator.addMethod("validCustomer", function () {
-                return vm.customer && vm.customer !== 0;
+                return vm.customerId && vm.customerId !== 0;
             }, "Please select a valid customer.");
 
             $.validator.addMethod("atLeastOneVehicle", function () {

@@ -27,7 +27,7 @@ namespace Renteo
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-litera.css",
+                      "~/Content/bootstrap-superhero.css",
                       "~/Content/typeahead.css",
                       "~/Content/toastr.css",
                       "~/Content/datatables/css/datatables.bootstrap4.css",

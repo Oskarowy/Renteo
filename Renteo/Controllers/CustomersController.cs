@@ -26,7 +26,10 @@ namespace Renteo.Controllers
         // GET: Customers
         public ViewResult Index()
         {
-            return View();
+            if (User.IsInRole(RoleName.CanManageVehicles))
+                return View("List");
+
+            return View("ReadOnlyList");
         }
 
         public ActionResult Details(int id)

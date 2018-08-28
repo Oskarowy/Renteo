@@ -17,12 +17,15 @@ namespace Renteo.App_Start
             CreateMap<Vehicle, VehicleDto>();
             CreateMap<MembershipType, MembershipTypeDto>();
             CreateMap<VehicleType, VehicleTypeDto>();
+            CreateMap<Rental, RentalDto>();
                 
 
             // Dto to Domain
             CreateMap<CustomerDto, Customer>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
             CreateMap<VehicleDto, Vehicle>()
+                .ForMember(c => c.Id, opt => opt.Ignore());
+            CreateMap<RentalDto, Rental>()
                 .ForMember(c => c.Id, opt => opt.Ignore());
 
         }

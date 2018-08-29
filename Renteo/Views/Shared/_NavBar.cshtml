@@ -1,14 +1,26 @@
 ﻿<nav class="navbar navbar-expand-sm navbar-dark bg-primary fixed-top">
     <div class="container">
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         @Html.ActionLink("Renteo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">@Html.ActionLink("Create New Rental", "New", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Rentals", "Index", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Customers", "Index", "Customers", new { area = "" }, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Vehicles", "Index", "Vehicles", new { area = "" },  new { @class = "nav-link" })</li>
-            </ul>
+            @if (Request.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Create New Rental", "New", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Rentals", "Index", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Customers", "Index", "Customers", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Vehicles", "Index", "Vehicles", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            }
+            else
+            {
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("About us", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                </ul>
+            }
             @Html.Partial("_LoginPartial")
         </div>
     </div>

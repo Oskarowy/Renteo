@@ -1,31 +1,40 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Just Renteo it!";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Renteo</h1>
+    <p class="lead">it has never been easier to rent a car.</p>
+    <p>@Html.ActionLink("Let's start !", "Register", "Account", routeValues: null, htmlAttributes: new { @class="btn btn-primary btn-lg" })</p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Ready</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            First of all you need to keep calm and register in Renteo. You can do it by your social media's account or
+            by standard way - just click @Html.ActionLink("this link", "Register", "Account")
+            or a button above. 
+            <br /><br/>
+            Then go to the next step and brace yourself for new rental experience!
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Steady</h2>
+        <p>
+            Now it's decision time. Choose wisely between petrol or diesel engines or if you are eco-friendly, get a hybrid!
+            Think about body type of the car that you want to ride. If you wanna take some friends, get a van or a big SUV.
+            <br />
+            You can get the full list of our cars @Html.ActionLink("here", "Index", "Vehicles").
+        </p>
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Go !</h2>
+        <p>Decision made? 
+            <br />
+            So what if I told you that you can rent one or more cars at the same time? Sounds great, huh? 
+            Hurry up then and get the car (or cars!) of your dreams before somebody will do it first!
+            Don't matter about money, we will charge your credit card automatically!
+        </p>
     </div>
 </div>

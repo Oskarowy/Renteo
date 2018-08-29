@@ -24,6 +24,7 @@ namespace Renteo.Controllers
             _context = new ApplicationDbContext();
         }
 
+        [AllowAnonymous]
         public ViewResult Index()
         {
             if (User.IsInRole(RoleName.CanManageVehicles))

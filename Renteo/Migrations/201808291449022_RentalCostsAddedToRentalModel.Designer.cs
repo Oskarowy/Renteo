@@ -7,13 +7,13 @@ namespace Renteo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddRentalCostClass : IMigrationMetadata
+    public sealed partial class RentalCostsAddedToRentalModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRentalCostClass));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RentalCostsAddedToRentalModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808291416353_AddRentalCostClass"; }
+            get { return "201808291449022_RentalCostsAddedToRentalModel"; }
         }
         
         string IMigrationMetadata.Source

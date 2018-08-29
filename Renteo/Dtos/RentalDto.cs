@@ -24,5 +24,9 @@ namespace Renteo.Dtos
         public DateTime DateRented { get; set; }
 
         public DateTime DateReturned { get; set; }
+
+        public int Length { get; set; }
+
+        public double TotalCost { get; set; }
     }
 }

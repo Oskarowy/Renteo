@@ -233,19 +233,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\CustomersController.cs" />
     <Compile Include="Controllers\API\NewRentalsController.cs" />
-    <Compile Include="Controllers\API\RentaCostsController.cs" />
     <Compile Include="Controllers\API\RentalsController.cs" />
     <Compile Include="Controllers\API\VehiclesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RentalCostsController.cs" />
     <Compile Include="Controllers\RentalsController.cs" />
     <Compile Include="Controllers\VehiclesController.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\NewRentalDto.cs" />
-    <Compile Include="Dtos\RentalCostDto.cs" />
     <Compile Include="Dtos\RentalDto.cs" />
     <Compile Include="Dtos\VehicleDto.cs" />
     <Compile Include="Dtos\VehicleTypeDto.cs" />
@@ -321,9 +318,9 @@
     <Compile Include="Migrations\201808291314590_AddRentalStakeOfVehicle.Designer.cs">
       <DependentUpon>201808291314590_AddRentalStakeOfVehicle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808291416353_AddRentalCostClass.cs" />
-    <Compile Include="Migrations\201808291416353_AddRentalCostClass.Designer.cs">
-      <DependentUpon>201808291416353_AddRentalCostClass.cs</DependentUpon>
+    <Compile Include="Migrations\201808291449022_RentalCostsAddedToRentalModel.cs" />
+    <Compile Include="Migrations\201808291449022_RentalCostsAddedToRentalModel.Designer.cs">
+      <DependentUpon>201808291449022_RentalCostsAddedToRentalModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -333,7 +330,6 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Rental.cs" />
-    <Compile Include="Models\RentalCost.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleType.cs" />
@@ -675,7 +671,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RentalCosts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -742,8 +737,8 @@
     <EmbeddedResource Include="Migrations\201808291314590_AddRentalStakeOfVehicle.resx">
       <DependentUpon>201808291314590_AddRentalStakeOfVehicle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808291416353_AddRentalCostClass.resx">
-      <DependentUpon>201808291416353_AddRentalCostClass.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808291449022_RentalCostsAddedToRentalModel.resx">
+      <DependentUpon>201808291449022_RentalCostsAddedToRentalModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -18,7 +18,6 @@ namespace Renteo.App_Start
             CreateMap<MembershipType, MembershipTypeDto>();
             CreateMap<VehicleType, VehicleTypeDto>();
             CreateMap<Rental, RentalDto>();
-            CreateMap<RentalCost, RentalCostDto>();
                 
 
             // Dto to Domain

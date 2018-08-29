@@ -1,20 +1,20 @@
 ﻿
 @{
-    ViewBag.Title = "Vehicles";
+    ViewBag.Title = "Park pojazdów";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Vehicles</h2>
+<h2>Park pojazdów"</h2>
 
 <table id="vehicles" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Make and Model</th>
-            <th>Production year</th>
-            <th>Type of body</th>
-            <th>Fuel type</th>
-            <th>Day rental stake</th>
-            <th>Rental status</th>
+            <th>Pojazd</th>
+            <th>Rok produkcji</th>
+            <th>Nadwozie</th>
+            <th>Rodzaj paliwa</th>
+            <th>Czynsz dzienny</th>
+            <th>Status wynajmu</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -54,8 +54,8 @@
                     {
                         data: "isRented",
                         render: function (data) {
-                            if (data) return "<span class='rented'>Rented</span>";
-                            else return "<a area='' class='btn btn-success' href='/rentals/new/'>Free</a>";
+                            if (data) return "<span class='rented'>Wynajęty</span>";
+                            else return "<a area='' class='btn btn-success' href='/rentals/new/'>Wolny!</a>";
 ;
                         }
                     }

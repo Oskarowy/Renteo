@@ -16,22 +16,22 @@ namespace Renteo.Models
         [Required]
         public string Model { get; set; }
 
-        [Display(Name = "Production Year")]
+        [Display(Name = "Rok produkcji")]
         [Required]
         public string ProductionYear { get; set; }
 
-        [Display(Name = "Fuel Type")]
+        [Display(Name = "Rodzaj paliwa")]
         [Required]
         public string FuelType { get; set; }
 
         public VehicleType VehicleType { get; set; }
 
-        [Display(Name = "Vehicle Type")]
+        [Display(Name = "Typ pojazdu")]
         [Required]
         public byte VehicleTypeId { get; set; }
 
         [Required]
-        [Display(Name = "Rental Stake")]
+        [Display(Name = "Czynsz dzienny")]
         public double RentalStake { get; set; }
 
         public bool IsRented { get; set; } = false;

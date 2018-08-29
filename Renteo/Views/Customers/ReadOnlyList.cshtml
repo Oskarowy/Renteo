@@ -1,16 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Customers";
+    ViewBag.Title = "Klienci";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Customers</h2>
+<h2>Klienci</h2>
 
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Customer</th>
-            <th>Membership Type</th>
-            <th>Membership duration</th>
+            <th>Klient</th>
+            <th>Rodzaj członkostwa</th>
+            <th>Czas trwania</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -35,7 +35,7 @@
                     {
                         data: "membershipType.durationInMonths",
                         render: function (data) {
-                            return data == 1 ? data + " month" : data + " months";
+                            return data == 1 ? data + " miesiąc" : data + " miesięcy";
                         }
                     },
                 ]

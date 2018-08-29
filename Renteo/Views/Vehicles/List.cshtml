@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Vehicles";
+    ViewBag.Title = "Park pojazdów";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Vehicles</h2>
+<h2>Park pojazdów</h2>
 
 <div style="margin-bottom: 15px">
     @Html.ActionLink("New Vehicle", "New", "Vehicles", null, new { @class = "btn btn-primary" })
@@ -13,12 +13,12 @@
 <table id="vehicles" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>Vehicle</th>
-            <th>Production year</th>
-            <th>Type of body</th>
-            <th>Rental status</th>
-            <th>Day rental stake</th>
-            <th>Delete</th>
+            <th>Pojazd</th>
+            <th>Rok produkcji</th>
+            <th>Nadwozie</th>
+            <th>Status wynajmu</th>
+            <th>Czynsz dzienny</th>
+            <th>Usuń</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -49,8 +49,8 @@
                     {
                         data: "isRented",
                         render: function (data) {
-                            if (data) return "Rented";
-                            else return "Free";
+                            if (data) return "Wynajęty";
+                            else return "Wolny";
                         }
                     },
                     {
@@ -62,7 +62,7 @@
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn btn-danger js-delete' data-vehicle-id=" + data + ">Delete</button>";
+                            return "<button class='btn btn-danger js-delete' data-vehicle-id=" + data + ">Usuń</button>";
                         }
                     }
                 ]
@@ -72,15 +72,15 @@
                 var button = $(this);
 
                 bootbox.confirm({
-                    title: "Delete Vehicle?",
+                    title: "Usunąć pojazd?",
                     closeButton: false,
-                    message: "Are you sure you want to delete this vehicle? This cannot be undone.",
+                    message: "Czy na pewno? Tej operacji nie można cofnąć...",
                     buttons: {
                         cancel: {
-                            label: '<i class="fa fa-times"></i> Cancel'
+                            label: '<i class="fa fa-times"></i> Cofnij'
                         },
                         confirm: {
-                            label: '<i class="fa fa-check"></i> Delete',
+                            label: '<i class="fa fa-check"></i> Usuń',
                             className: 'btn-danger'
                         }
                     },

@@ -14,17 +14,19 @@ namespace Renteo.Models
 
         [Required]
         [StringLength(255)]
+        [Display(Name = "Imię i nazwisko")]
         public string Name { get; set; }
 
+        [Display(Name = "Zasubskrybować?")]
         public bool IsSubscribedToNewsletter { get; set; }
 
         public MembershipType MembershipType { get; set; }
 
         [Required]
-        [Display(Name = "Membership Type")]
+        [Display(Name = "Typ członkostwa")]
         public byte MembershipTypeId { get; set; }
 
-        [Display(Name = "Date of Birth")]
+        [Display(Name = "Data urodzenia")]
         [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     }

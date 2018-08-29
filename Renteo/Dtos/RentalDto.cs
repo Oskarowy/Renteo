@@ -23,6 +23,6 @@ namespace Renteo.Dtos
 
         public DateTime DateRented { get; set; }
 
-        public DateTime? DateReturned { get; set; }
+        public DateTime DateReturned { get; set; }
     }
 }

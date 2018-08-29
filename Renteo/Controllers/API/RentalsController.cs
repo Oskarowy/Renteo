@@ -44,7 +44,7 @@ namespace Renteo.Controllers.API
         }
 
         // PUT: api/Rentals/5
-        [HttpDelete]
+        [HttpPut]
         [Authorize(Roles = RoleName.CanManageVehicles)]
         public IHttpActionResult UpdateRental(int id, RentalDto rentalDto)
         {

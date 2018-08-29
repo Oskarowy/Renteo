@@ -17,6 +17,7 @@
             <th>Production year</th>
             <th>Type of body</th>
             <th>Rental status</th>
+            <th>Day rental stake</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -50,6 +51,12 @@
                         render: function (data) {
                             if (data) return "Rented";
                             else return "Free";
+                        }
+                    },
+                    {
+                        data: "rentalStake",
+                        render: function (data) {
+                            return data + " PLN";
                         }
                     },
                     {

@@ -13,6 +13,7 @@
             <th>Production year</th>
             <th>Type of body</th>
             <th>Fuel type</th>
+            <th>Day rental stake</th>
             <th>Rental status</th>
         </tr>
     </thead>
@@ -43,6 +44,12 @@
                     },
                     {
                         data: "fuelType"
+                    },
+                    {
+                        data: "rentalStake",
+                        render: function (data) {
+                            return data + " PLN";
+                        }
                     },
                     {
                         data: "isRented",

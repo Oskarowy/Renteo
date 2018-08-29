@@ -9,10 +9,10 @@ namespace Renteo
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                        "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/toastr.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/jquery-{version}.js",
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/datatables/jquery.dataTables.js",
                         "~/Scripts/datatables/dataTables.bootstrap4.js"));

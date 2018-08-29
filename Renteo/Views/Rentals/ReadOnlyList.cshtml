@@ -14,6 +14,7 @@
             <th>Customer</th>
             <th>Date of rent</th>
             <th>Expected return</th>
+            <th>Total cost</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -48,6 +49,12 @@
                         data: "dateReturned",
                         render: function (data) {
                             return data.toString().substr(0, 10);
+                        }
+                    },
+                    {
+                        data: "totalCost",
+                        render: function (data) {
+                            return data + " PLN";
                         }
                     }
                 ]

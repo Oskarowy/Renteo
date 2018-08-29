@@ -31,6 +31,10 @@ namespace Renteo.ViewModels
         [Required]
         public byte? VehicleTypeId { get; set; }
 
+        [Required]
+        [Display(Name = "Rental Stake")]
+        public double RentalStake { get; set; }
+
         public VehicleFormViewModel()
         {
             Id = 0;
@@ -44,6 +48,7 @@ namespace Renteo.ViewModels
             FuelType = vehicle.FuelType;
             ProductionYear = vehicle.ProductionYear;
             VehicleTypeId = vehicle.VehicleTypeId;
+            RentalStake = vehicle.RentalStake;
         }
     }
 }

@@ -84,6 +84,8 @@ namespace Renteo.Controllers
                 vehicleInDb.ProductionYear = vehicle.ProductionYear;
                 vehicleInDb.FuelType = vehicle.FuelType;
                 vehicleInDb.VehicleTypeId = vehicle.VehicleTypeId;
+                vehicleInDb.IsRented = vehicle.IsRented;
+                vehicleInDb.RentalStake = vehicle.RentalStake;
                 
             }
 

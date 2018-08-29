@@ -32,6 +32,11 @@
         @Html.ValidationMessageFor(m => m.FuelType)
     </div>
     <div class="form-group">
+        @Html.LabelFor(m => m.RentalStake)
+        @Html.TextBoxFor(m => m.RentalStake, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.RentalStake)
+    </div>
+    <div class="form-group">
         @Html.LabelFor(m => m.VehicleTypeId)
         @Html.DropDownListFor(m => m.VehicleTypeId, new SelectList(Model.VehicleTypes, "Id", "BodyType"), "Select Vehicle Type", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.VehicleTypeId)

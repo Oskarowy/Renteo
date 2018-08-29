@@ -314,6 +314,10 @@
     <Compile Include="Migrations\201808290706088_CorrectedRentalsModelAdd.Designer.cs">
       <DependentUpon>201808290706088_CorrectedRentalsModelAdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808291314590_AddRentalStakeOfVehicle.cs" />
+    <Compile Include="Migrations\201808291314590_AddRentalStakeOfVehicle.Designer.cs">
+      <DependentUpon>201808291314590_AddRentalStakeOfVehicle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -725,6 +729,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808290706088_CorrectedRentalsModelAdd.resx">
       <DependentUpon>201808290706088_CorrectedRentalsModelAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808291314590_AddRentalStakeOfVehicle.resx">
+      <DependentUpon>201808291314590_AddRentalStakeOfVehicle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

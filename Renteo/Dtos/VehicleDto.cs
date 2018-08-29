@@ -35,6 +35,9 @@ namespace Renteo.Dtos
         [Required]
         public byte VehicleTypeId { get; set; }
 
+        [Required]
+        public double RentalStake { get; set; }
+
         public bool IsRented { get; set; } = false;
     }
 }

@@ -30,6 +30,10 @@ namespace Renteo.Models
         [Required]
         public byte VehicleTypeId { get; set; }
 
+        [Required]
+        [Display(Name = "Rental Stake")]
+        public double RentalStake { get; set; }
+
         public bool IsRented { get; set; } = false;
     }
 }

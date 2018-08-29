@@ -12,13 +12,17 @@ namespace Renteo.Dtos
         public int Id { get; set; }
 
         [Required]
-        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
+
+        public CustomerDto Customer { get; set; }
 
         [Required]
-        public Vehicle Vehicle { get; set; }
+        public int VehicleId { get; set; }
+
+        public VehicleDto Vehicle { get; set; }
 
         public DateTime DateRented { get; set; }
 
-        public DateTime? DateReturned { get; set; } 
+        public DateTime? DateReturned { get; set; }
     }
 }

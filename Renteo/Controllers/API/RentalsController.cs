@@ -4,6 +4,7 @@ using Renteo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -23,6 +24,8 @@ namespace Renteo.Controllers.API
         public IHttpActionResult GetRentals()
         {
             var rentalDto = _context.Rentals
+                .Include( c => c.Customer)
+                .Include( c => c.Vehicle)
                 .ToList()
                 .Select(Mapper.Map<Rental, RentalDto>);
 

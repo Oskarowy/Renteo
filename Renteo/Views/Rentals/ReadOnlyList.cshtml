@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Rentals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rentals</h2>
+
+<table id="rentals" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Rental No.</th>
+            <th>Vehicle</th>
+            <th>Customer</th>
+            <th>Date of rent</th>
+            <th>Expected return</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $('#rentals').DataTable({
+                ajax: {
+                    url: "/api/rentals",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "vehicle.name"
+                    },
+                    {
+                        data: "customer.name"
+                    },
+                    {
+                        data: "dateRented"
+                    },
+                    {
+                        data: "dateReturned",
+                        render: function (data) {
+                            if (data == null) return new Date().toISOString().substring(0, 10);
+                            else return data;
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+}
+

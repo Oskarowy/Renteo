@@ -14,7 +14,6 @@
             <th>Type of body</th>
             <th>Fuel type</th>
             <th>Rental status</th>
-            <th>Expected return</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -51,13 +50,6 @@
                             if (data) return "<span class='rented'>Rented</span>";
                             else return "<a area='' class='btn btn-success' href='/rentals/new/'>Free</a>";
 ;
-                        }
-                    },
-                    {
-                        data: "isRented",
-                        render: function (data) {
-                            if (data) return new Date().toISOString().substring(0, 10);
-                            else return "";
                         }
                     }
                    

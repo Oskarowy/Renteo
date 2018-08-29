@@ -39,13 +39,15 @@
                         data: "customer.name"
                     },
                     {
-                        data: "dateRented"
+                        data: "dateRented",
+                        render: function (data) {
+                            return data.toString().substr(0, 10);
+                        }
                     },
                     {
                         data: "dateReturned",
                         render: function (data) {
-                            if (data == null) return new Date().toISOString().substring(0, 10);
-                            else return data;
+                            return data.toString().substr(0, 10);
                         }
                     }
                 ]

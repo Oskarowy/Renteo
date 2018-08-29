@@ -36,7 +36,8 @@ namespace Renteo.Controllers.API
                     {
                         Customer = customer,
                         Vehicle = vehicle,
-                        DateRented = DateTime.Now
+                        DateRented = DateTime.Now,
+                        DateReturned = DateTime.Now.AddDays(1)
                     };
 
                     vehicle.IsRented = true;

@@ -95,7 +95,7 @@ namespace Renteo.Controllers.API
 
             var rentals = _context.Rentals
                 .Include(c => c.Customer)
-                .Where(r => r.CustomerId == customerInDb.Id)
+                .Where(r => r.Customer.Id == customerInDb.Id)
                 .ToList();
 
             if (rentals.Count > 0)

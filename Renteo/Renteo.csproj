@@ -341,6 +341,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.html" />
+    <Content Include="ActiveRentals.html" />
     <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\bootstrap-litera.css" />
     <Content Include="Content\bootstrap-superhero.css" />

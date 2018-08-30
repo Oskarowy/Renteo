@@ -47,12 +47,17 @@ namespace Renteo.Controllers.API
                         Length = 2,
                         TotalCost = vehicle.RentalStake * 2
                     };
-                    // I don't know why but when it is in one line, it always return 0 :(
                     discount = rental.Customer.MembershipType.DiscountRate;
-                    discountRate = discount-100;
-                    total = -discountRate * rental.TotalCost;
-                    result = total / 100;
-                    rental.TotalCost = result;
+                    /////////////////////////////////////////////
+                    // I don't know why but when it is in one line, it always return 0 :(
+                    if(discount != 0)
+                    {
+                        discountRate = discount - 100;
+                        total = -discountRate * rental.TotalCost;
+                        result = total / 100;
+                        rental.TotalCost = result;
+                    }
+                    //////////////////////////////////////////////
                     vehicle.IsRented = true;
                     _context.Rentals.Add(rental);
                 } 

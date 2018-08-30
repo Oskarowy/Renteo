@@ -93,6 +93,20 @@ namespace Renteo.Controllers.API
             if (customerInDb == null)
                 return NotFound();
 
+            var rentals = _context.Rentals
+                .Include(c => c.Customer)
+                .Where(r => r.CustomerId == customerInDb.Id)
+                .ToList();
+
+            if (rentals.Count > 0)
+            {
+                string url = "https://localhost:44316/ActiveRentals.html";
+
+                Uri uri = new Uri(url);
+
+                return Redirect(uri);
+            }
+
             _context.Customers.Remove(customerInDb);
             _context.SaveChanges();
 

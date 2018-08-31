@@ -5,20 +5,31 @@
         </button>
         @Html.ActionLink("Renteo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
-            @if (Request.IsAuthenticated)
+            @if (Request.IsAuthenticated && User.IsInRole("CanManageVehicles"))
             {
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">@Html.ActionLink("Lista wynajmów", "Index", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Baza Klientów", "Index", "Customers", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Park pojazdów", "Index", "Vehicles", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Nowy wynajem", "New", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
+                    <hr />
+                </ul>
+            }
+            else if (Request.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav mr-auto">
+                    <li class="nav-item">@Html.ActionLink("Moje wynajmy", "Index", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Park pojazdów", "Index", "Vehicles", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Nowy wynajem", "New", "Rentals", new { area = "" }, new { @class = "nav-link" })</li>
+                    <hr />
                 </ul>
             }
             else
-            {
+            { 
                 <ul class="nav navbar-nav mr-auto">
                     <li class="nav-item">@Html.ActionLink("O mnie", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Kontakt", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <hr />
                 </ul>
             }
             @Html.Partial("_LoginPartial")

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Renteo.Models
@@ -11,7 +12,7 @@ namespace Renteo.Models
 
 
         [Required]
-        [Display(Name = "Numer prawa jazdy")]
+        [Display(Name = "Numer prawa jazdy")] 
         public string DrivingLicense { get; set; }
     }
 
@@ -72,6 +73,22 @@ namespace Renteo.Models
         [Required]
         [Display(Name = "Numer prawa jazdy")]
         public string DrivingLicense { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        [Display(Name = "Imię i nazwisko")]
+        public string Name { get; set; }
+
+        public MembershipType MembershipType { get; set; }
+
+        public IEnumerable<MembershipType> MembershipTypes { get; set; }
+
+        [Required]
+        [Display(Name = "Typ członkostwa")]
+        public byte MembershipTypeId { get; set; }
+
+        [Display(Name = "Data urodzenia")]
+        public DateTime? Birthdate { get; set; }
 
         [Required]
         [EmailAddress]

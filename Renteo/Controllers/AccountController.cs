@@ -18,15 +18,18 @@ namespace Renteo.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = new ApplicationDbContext();
         }
 
         public ApplicationSignInManager SignInManager
@@ -140,7 +143,14 @@ namespace Renteo.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var membershipTypes = _context.MembershipTypes.ToList();
+
+            var viewModel = new RegisterViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+
+            return View(viewModel);
         }
 
         //
@@ -152,15 +162,28 @@ namespace Renteo.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.MembershipTypes = _context.MembershipTypes.ToList();
+
                 var user = new ApplicationUser
                 {
-                    UserName = model.Email,
+                    UserName = model.Name,
                     Email = model.Email,
                     DrivingLicense = model.DrivingLicense
                 };
+
+                var customer = new Customer
+                {
+                    Name = model.Name,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Birthdate = (model.Birthdate == null) ? null : model.Birthdate
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    _context.Customers.Add(customer);
+                    _context.SaveChanges();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Aby uzyskać więcej informacji o sposobie włączania potwierdzania konta i resetowaniu hasła, odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=320771

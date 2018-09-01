@@ -30,6 +30,8 @@ namespace Renteo.ViewModels
         public RentalFormViewModel()
         {
             Id = 0;
+            DateRented = DateTime.Now;
+            DateReturned = DateTime.Now;
         }
 
         public RentalFormViewModel(Rental rental)

@@ -16,6 +16,14 @@ namespace Renteo.Models
         [Required]
         public string Model { get; set; }
 
+        public string Name
+        {
+            get
+            {
+                return Make + " " + Model;
+            }
+        }
+
         [Display(Name = "Rok produkcji")]
         [Required]
         public string ProductionYear { get; set; }

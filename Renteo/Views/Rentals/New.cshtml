@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true, "Proszę poprawić poniższe błędy.")
     <div class="form-group">
         @Html.LabelFor(m => m.VehicleId)
-        @Html.DropDownListFor(m => m.VehicleId, new SelectList(Model.Vehicles, "Id", "Make"), "Wybierz pojazd z listy", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.VehicleId, new SelectList(Model.Vehicles, "Id", "Name"), "Wybierz pojazd z listy", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.VehicleId)
     </div>
     <div class="form-group">

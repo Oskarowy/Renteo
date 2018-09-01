@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+
+
 <div class="navbar-collapse">
 
     @if (Request.IsAuthenticated)
@@ -9,9 +11,9 @@
 
             <ul class="nav navbar-nav navbar-right mr-auto">
                 <li class="nav-item">
-                    @Html.ActionLink("Witaj, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link" })
+                    @Html.ActionLink("Edytuj dane użytkownika : " + User.Identity.GetUserName(), "Edit", "Customers", new { id = 21 }, htmlAttributes: new { @class = "nav-link" })
                 </li>
-                <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a></li>
+                <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Wyloguj się</a></li>
             </ul>
         }
     }

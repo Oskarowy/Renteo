@@ -44,9 +44,10 @@ namespace Renteo.Controllers.API
                         Vehicle = vehicle,
                         DateRented = DateTime.Now,
                         DateReturned = DateTime.Now.AddDays(2),
-                        Length = 2,
-                        TotalCost = vehicle.RentalStake * 2
                     };
+                    rental.Length = (rental.DateReturned - rental.DateRented).Days;
+                    rental.TotalCost = vehicle.RentalStake * rental.Length;
+
                     discount = rental.Customer.MembershipType.DiscountRate;
                     /////////////////////////////////////////////
                     // I don't know why but when it is in one line, it always return 0 :(

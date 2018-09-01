@@ -1,10 +1,12 @@
-﻿using Renteo.Models;
+﻿using AutoMapper;
+using Renteo.Models;
 using Renteo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace Renteo.Controllers
 {
@@ -23,9 +25,21 @@ namespace Renteo.Controllers
         }
 
         public ActionResult New()
-        { 
+        {
+            var customerId = _context.Customers.Single(c => c.Id == 22 ).Id;
 
-            return View();
+            //if (customerId == null)
+                //return HttpNotFound();
+
+            var vehicles = _context.Vehicles.ToList();
+
+            var viewModel = new RentalFormViewModel
+            {
+                Vehicles = vehicles,
+                CustomerId = customerId
+            };
+
+            return View("New", viewModel);
         }
 
         public ActionResult Index()
@@ -57,19 +71,44 @@ namespace Renteo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Rental rental)
         {
-            var rentalInDb = _context.Rentals.Single(v => v.Id == rental.Id);
+            var vehicle = _context.Vehicles.Include(v => v.VehicleType).Single(v => v.Id == rental.VehicleId);
+            var customer = _context.Customers.Include(c => c.MembershipType).Single(c => c.Id == rental.CustomerId);
+            rental.Vehicle = vehicle;
+            rental.Customer = customer;
 
-                rentalInDb.Id = rental.Id;
-                rentalInDb.CustomerId = rental.CustomerId;
-                rentalInDb.VehicleId = rental.VehicleId;
-                rentalInDb.DateRented = rental.DateRented;
-                rentalInDb.DateReturned = rental.DateReturned;
-                rentalInDb.Length = rental.Length;
-                rentalInDb.TotalCost = rental.TotalCost;
+            double result = 0;
+            double total = 0;
+            int discount = 0;
+            int discountRate = 0;
 
+            if (rental.Id == 0)
+            {
+                rental.Length = (rental.DateReturned - rental.DateRented).Days;
+                rental.TotalCost = rental.Vehicle.RentalStake * rental.Length;
+
+                discount = rental.Customer.MembershipType.DiscountRate;
+                /////////////////////////////////////////////
+                // I don't know why but when it is in one line, it always return 0 :(
+                if (discount != 0)
+                {
+                    discountRate = discount - 100;
+                    total = -discountRate * rental.TotalCost;
+                    result = total / 100;
+                    rental.TotalCost = result;
+                }
+                //////////////////////////////////////////////
+                rental.Vehicle.IsRented = true;
+                _context.Rentals.Add(rental);
+            }
+            else
+            {
+                var rentalInDb = _context.Rentals.Single(v => v.Id == rental.Id);
+
+                Mapper.Map(rental, rentalInDb);
+            }
             _context.SaveChanges();
 
-            return RedirectToAction("List", "Rentals");
+            return RedirectToAction("Index", "Rentals");
         }
     }
 

@@ -1,122 +1,30 @@
-﻿
+﻿@model Renteo.ViewModels.RentalFormViewModel
 @{
     ViewBag.Title = "Nowy wynajem";
 }
 
 <h2>Dodaj nowy wynajem</h2>
 
-<form id="newRental">
-    <div class="form-group">
-        <label>Klient</label>
-        <div class="tt-container">
-            <input id="customer" name="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label>Pojazd(y)</label>
-        <div class="tt-container">
-            <input id="vehicle" name="vehicle" data-rule-atLeastOneVehicle="true" type="text" value="" class="form-control" />
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 col-sm-4">
-            <ul id="vehicles" class="list-group"></ul>
-        </div>
-    </div>
-
-    <button class="btn btn-primary">Zatwierdź</button>
-</form>
-
-@section scripts
+@using (@Html.BeginForm("Save", "Rentals"))
 {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(document).ready(function () {
+    @Html.ValidationSummary(true, "Proszę poprawić poniższe błędy.")
+    <div class="form-group">
+        @Html.LabelFor(m => m.VehicleId)
+        @Html.DropDownListFor(m => m.VehicleId, new SelectList(Model.Vehicles, "Id", "Make"), "Wybierz pojazd z listy", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.VehicleId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DateRented)
+        @Html.TextBoxFor(m => m.DateRented, "{0:dd MM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DateRented)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DateReturned)
+        @Html.TextBoxFor(m => m.DateReturned, "{0:dd MM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.DateReturned)
+    </div>
 
-            var vm = {
-                vehicleIds: []
-            };
-
-            var customers = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/customers?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $('#customer').typeahead({
-                minLength: 1,
-                highlight: true
-            }, {
-                    name: 'customers',
-                    display: 'name',
-                    source: customers
-            }).on("typeahead:select", function (e, customer) {
-                    vm.customerId = customer.id;
-                });
-
-            var vehicles = new Bloodhound({
-                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('make'),
-                queryTokenizer: Bloodhound.tokenizers.whitespace,
-                remote: {
-                    url: '/api/vehicles?query=%QUERY',
-                    wildcard: '%QUERY'
-                }
-            });
-
-            $('#vehicle').typeahead({
-                minLength: 1,
-                highlight: true
-            }, {
-                    name: 'vehicles',
-                    display: 'name',
-                    source: vehicles
-                }).on("typeahead:select", function (e, vehicle) {
-                    $("#vehicles").append("<li class='list-group-item'>" + vehicle.name + "</li>");
-
-                    $("#vehicle").typeahead("val", "");
-
-                    vm.vehicleIds.push(vehicle.id);
-                });
-
-            $.validator.addMethod("validCustomer", function () {
-                return vm.customerId && vm.customerId !== 0;
-            }, "Please select a valid customer.");
-
-            $.validator.addMethod("atLeastOneVehicle", function () {
-                return vm.vehicleIds.length > 0;
-            }, "Please select at least one vehicle.");
-
-            var validator = $("#newRental").validate({
-                submitHandler: function () {
-                    $.ajax({
-                        url: "/api/newRentals",
-                        method: "post",
-                        data: vm
-                    })
-                        .done(function () {
-                            toastr.success("Wypożyczenia zapisane w bazie danych!");
-
-                            $("#customer").typeahead("val", "");
-                            $("#vehicle").typeahead("val", "");
-                            $("#vehicles").empty();
-
-                            vm = { vehicleIds: [] };
-
-                            validator.resetForm();
-                        })
-                        .fail(function () {
-                            toastr.error("Ups... wystąpił błąd.");
-                        });
-
-                    return false;
-                }
-            });
-        });
-    </script>
+    @Html.HiddenFor(m => m.CustomerId)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Zapisz</button>
 }
-

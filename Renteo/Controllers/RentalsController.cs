@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Renteo.Models;
 using Renteo.ViewModels;
 using System;
@@ -26,10 +27,12 @@ namespace Renteo.Controllers
 
         public ActionResult New()
         {
-            var customerId = _context.Customers.Single(c => c.Id == 22 ).Id;
+            string accountId = User.Identity.GetUserId();
+            var customer = _context.Customers.Single(c => c.AccountId == accountId);
+            int customerId = customer.Id;
 
-            //if (customerId == null)
-                //return HttpNotFound();
+            if (customerId == 0)
+                return HttpNotFound();
 
             var vehicles = _context.Vehicles.ToList();
 

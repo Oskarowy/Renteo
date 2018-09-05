@@ -64,6 +64,16 @@ namespace Renteo.Models
         [Display(Name = "Hasło")]
         public string Password { get; set; }
 
+        public string Name { get; set; }
+
+        public MembershipType MembershipType { get; set; }
+
+        public IEnumerable<MembershipType> MembershipTypes { get; set; }
+
+        [Required]
+        [Display(Name = "Typ członkostwa")]
+        public byte MembershipTypeId { get; set; }
+
         [Display(Name = "Zapamiętać Cię?")]
         public bool RememberMe { get; set; }
     }

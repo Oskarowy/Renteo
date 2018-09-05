@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -80,6 +81,7 @@ namespace Renteo.Controllers
             // Nie powoduje to liczenia niepowodzeń logowania w celu zablokowania konta
             // Aby włączyć wyzwalanie blokady konta po określonej liczbie niepomyślnych prób wprowadzenia hasła, zmień ustawienie na shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            
             switch (result)
             {
                 case SignInStatus.Success:
@@ -166,7 +168,7 @@ namespace Renteo.Controllers
 
                 var user = new ApplicationUser
                 {
-                    UserName = model.Name,
+                    UserName = model.Email,
                     Email = model.Email,
                     DrivingLicense = model.DrivingLicense
                 };
@@ -174,6 +176,7 @@ namespace Renteo.Controllers
                 var customer = new Customer
                 {
                     Name = model.Name,
+                    AccountId = user.Id,
                     MembershipTypeId = model.MembershipTypeId,
                     Birthdate = (model.Birthdate == null) ? null : model.Birthdate
                 };
@@ -183,9 +186,8 @@ namespace Renteo.Controllers
                 {
                     _context.Customers.Add(customer);
                     _context.SaveChanges();
-
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                        
                     // Aby uzyskać więcej informacji o sposobie włączania potwierdzania konta i resetowaniu hasła, odwiedź stronę https://go.microsoft.com/fwlink/?LinkID=320771
                     // Wyślij wiadomość e-mail z tym łączem
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

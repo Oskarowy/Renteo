@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Renteo.ViewModels;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Renteo.Controllers
 {
@@ -87,15 +89,13 @@ namespace Renteo.Controllers
             }
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Customers");
+            return RedirectToAction("Details", new { id = customer.Id });
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string accountId)
         {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-
-            if (customer == null)
-                return HttpNotFound();
+            string customerAccountId = User.Identity.GetUserId();
+            var customer = _context.Customers.Single(c => c.AccountId == customerAccountId);
 
             var viewModel = new CustomerFormViewModel
             {

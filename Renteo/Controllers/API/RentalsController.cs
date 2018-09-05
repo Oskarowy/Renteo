@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace Renteo.Controllers.API
 {
@@ -20,12 +21,34 @@ namespace Renteo.Controllers.API
             _context = new ApplicationDbContext();
         }
 
-        // GET: api/Rentals
+        // GET: api/Rentals/all
+        [Route("api/rentals/all")]
         public IHttpActionResult GetRentals()
         {
             var rentalDto = _context.Rentals
                 .Include( c => c.Customer)
                 .Include( c => c.Vehicle)
+                .ToList()
+                .Select(Mapper.Map<Rental, RentalDto>);
+
+            return Ok(rentalDto);
+        }
+
+        // GET: api/Rentals/CustomerId
+        [Route("api/rentals/my/{id}")]
+        public IHttpActionResult GetMyRentals(int id)
+        {
+            string accountId = User.Identity.GetUserId();
+            var customer = _context.Customers.Single(c => c.AccountId == accountId);
+            int customerId = customer.Id;
+
+            if (customerId == 0)
+                return NotFound();
+
+            var rentalDto = _context.Rentals
+                .Include(c => c.Customer)
+                .Include(c => c.Vehicle)
+                .Where(c => c.CustomerId == customerId)
                 .ToList()
                 .Select(Mapper.Map<Rental, RentalDto>);
 

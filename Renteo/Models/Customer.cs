@@ -12,6 +12,8 @@ namespace Renteo.Models
     {
         public int Id { get; set; }
 
+        public string AccountId { get; set; }
+
         [Required]
         [StringLength(255)]
         [Display(Name = "Imię i nazwisko")]

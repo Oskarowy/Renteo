@@ -89,7 +89,7 @@ namespace Renteo.Controllers
 
             if (rental.Id == 0)
             {
-                rental.Length = (rental.DateReturned - rental.DateRented).Days;
+                rental.Length = (rental.DateReturned - rental.DateRented).Days +1;
                 rental.TotalCost = rental.Vehicle.RentalStake * rental.Length;
 
                 discount = rental.Customer.MembershipType.DiscountRate;

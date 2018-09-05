@@ -12,10 +12,10 @@
         <tr>
             <th>Numer wynajmu</th>
             <th>Pojazd</th>
-            <th>Klient</th>
             <th>Data wypożyczenia</th>
             <th>Planowany zwrot</th>
             <th>Całkowity koszt</th>
+            <th>Zakończ wynajem</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -38,9 +38,6 @@
                         data: "vehicle.name"
                     },
                     {
-                        data: "customer.name"
-                    },
-                    {
                         data: "dateRented",
                         render: function (data) {
                             return data.toString().substr(0, 10);
@@ -57,8 +54,45 @@
                         render: function (data) {
                             return data + " PLN";
                         }
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-danger js-delete' data-rental-id=" + data + ">Zakończ</button>";
+                        }
                     }
                 ]
+            });
+
+            $("#rentals").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm({
+                    title: "Zakończyć aktualny wynajem?",
+                    closeButton: false,
+                    message: "Wynajem zostanie zakończony z dniem dzisiejszym - spowoduje to wygenerowanie faktury. <br><br> Czy na pewno? Tej operacji nie można cofnąć...",
+                    buttons: {
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> Cofnij'
+                        },
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> Zakończ',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/rentals/" + button.attr("data-rental-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    toastr.success("Wynajem został zakończony");
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    }
+                });
             });
         });
     </script>

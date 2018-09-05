@@ -88,7 +88,6 @@ namespace Renteo.Controllers.API
 
         // DELETE: api/Rentals/5
         [HttpDelete]
-        [Authorize(Roles = RoleName.CanManageVehicles)]
         public IHttpActionResult DeleteRental(int id)
         {
             var rental = _context.Rentals.Include(v => v.Vehicle).Single(r => r.Id == id);

@@ -58,7 +58,7 @@
                     {
                         data: "id",
                         render: function (data) {
-                            return "<button class='btn btn-danger js-delete' data-rental-id=" + data + ">Zakończ</button>";
+                            return "<button class='btn btn-success js-delete' data-rental-id=" + data + ">Zakończ</button>";
                         }
                     }
                 ]
@@ -84,10 +84,9 @@
                         if (result) {
                             $.ajax({
                                 url: "/api/rentals/" + button.attr("data-rental-id"),
-                                method: "DELETE",
+                                method: "GET",
                                 success: function () {
-                                    toastr.success("Wynajem został zakończony");
-                                    table.row(button.parents("tr")).remove().draw();
+                                    location.href = "rentals/details/" + button.attr("data-rental-id");
                                 }
                             });
                         }

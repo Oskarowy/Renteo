@@ -49,6 +49,7 @@ namespace Renteo.Controllers.API
                 .Include(c => c.Customer)
                 .Include(c => c.Vehicle)
                 .Where(c => c.CustomerId == customerId)
+                .Where(c => c.IsActive == true)
                 .ToList()
                 .Select(Mapper.Map<Rental, RentalDto>);
 

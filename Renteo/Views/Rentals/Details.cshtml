@@ -1,0 +1,33 @@
+﻿@model Renteo.Models.Rental
+@{
+    ViewBag.Title = "Podsumowanie wynajmu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+<br />
+<strong>Dane pojazdu:</strong>
+<ul>
+    <li>Marka pojazdu: @Model.Vehicle.Make</li>
+    <br />
+    <li>Model pojazdu: @Model.Vehicle.Model</li>
+    <br />
+    <li>Rok produkcji: @Model.Vehicle.ProductionYear</li>
+    <br />
+    <li>Rodzaj paliwa: @Model.Vehicle.FuelType</li>
+    <br />
+    <li>Nadwozie: @Model.Vehicle.VehicleType.BodyType</li>
+    <br />
+    <br />
+</ul>
+<strong>Koszt wynajmu:</strong>
+<ul>
+    <li>Czynsz dzienny: @Model.Vehicle.RentalStake PLN</li>
+    <br />
+    <li>Długość wynajmu: @Model.Length dni</li>
+    <br />
+    <li>Zniżka członkowska: @Model.Customer.MembershipType.DiscountRate %</li>
+    <br />
+    <br />
+
+    <strong><li>Całkowity koszt: @Model.TotalCost PLN</li></strong>
+</ul>

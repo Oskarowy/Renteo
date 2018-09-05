@@ -82,27 +82,11 @@ namespace Renteo.Controllers
             rental.Vehicle = vehicle;
             rental.Customer = customer;
 
-            double result = 0;
-            double total = 0;
-            int discount = 0;
-            int discountRate = 0;
-
             if (rental.Id == 0)
             {
-                rental.Length = (rental.DateReturned - rental.DateRented).Days +1;
-                rental.TotalCost = rental.Vehicle.RentalStake * rental.Length;
+                rental.calculateLength();
+                rental.calculateTotalCost();
 
-                discount = rental.Customer.MembershipType.DiscountRate;
-                /////////////////////////////////////////////
-                // I don't know why but when it is in one line, it always return 0 :(
-                if (discount != 0)
-                {
-                    discountRate = discount - 100;
-                    total = -discountRate * rental.TotalCost;
-                    result = total / 100;
-                    rental.TotalCost = result;
-                }
-                //////////////////////////////////////////////
                 rental.Vehicle.IsRented = true;
                 _context.Rentals.Add(rental);
             }
@@ -115,6 +99,29 @@ namespace Renteo.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Rentals");
+        }
+
+        public ActionResult Details(int id)
+        {
+            var rental = _context
+                .Rentals
+                .Include(v => v.Vehicle)
+                .Include(c => c.Customer)
+                .Include(t => t.Customer.MembershipType)
+                .Include(t => t.Vehicle.VehicleType)
+                .SingleOrDefault(r => r.Id == id);
+
+            if (rental == null)
+                return HttpNotFound();
+
+            rental.IsActive = false;
+            rental.Vehicle.IsRented = false;
+            rental.calculateLengthTillToday();
+            rental.calculateTotalCost();
+
+            _context.SaveChanges();
+
+            return View(rental);
         }
     }
 

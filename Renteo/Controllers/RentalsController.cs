@@ -34,7 +34,10 @@ namespace Renteo.Controllers
             if (customerId == 0)
                 return HttpNotFound();
 
-            var vehicles = _context.Vehicles.ToList();
+            var vehicles = _context.Vehicles
+                .Include(c => c.VehicleType)
+                .Where(c => c.IsRented == false)
+                .ToList();
 
             var viewModel = new RentalFormViewModel
             {

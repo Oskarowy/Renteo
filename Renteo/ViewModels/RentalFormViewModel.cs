@@ -15,12 +15,15 @@ namespace Renteo.ViewModels
 
         public IEnumerable<Customer> Customers { get; set; }
 
+        [Display(Name = "Wybierz pojazd z listy")]
         public int VehicleId { get; set; }
 
         public IEnumerable<Vehicle> Vehicles { get; set; }
 
+        [Display(Name = "Data wynajęcia")]
         public DateTime DateRented { get; set; }
 
+        [Display(Name = "Data zwrotu")]
         public DateTime DateReturned { get; set; }
 
         public int Length { get; set; }

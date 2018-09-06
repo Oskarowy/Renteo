@@ -20,10 +20,8 @@ namespace Renteo.Models
 
         public Vehicle Vehicle { get; set; }
 
-        [Required]
         public DateTime DateRented { get; set; }
 
-        [Required]
         [ReturnDateLaterOrEqualRentDate]
         public DateTime DateReturned { get; set; }
 
@@ -42,7 +40,13 @@ namespace Renteo.Models
         {
             DateTime actualReturnDate = DateTime.Now;
             DateReturned = actualReturnDate;
-            Length = (DateReturned - DateRented).Days + 1;
+            if (DateRented.CompareTo(DateReturned) > 0)
+            {
+                DateRented = actualReturnDate;
+                Length = 0;
+            }
+                
+            else Length = (DateReturned - DateRented).Days + 1;
         }
 
         public void calculateTotalCost()

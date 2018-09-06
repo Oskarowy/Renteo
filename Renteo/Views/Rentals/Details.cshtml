@@ -19,19 +19,29 @@
     <br />
     <br />
 </ul>
-<strong>Koszt wynajmu:</strong>
-<ul>
-    <li>Czynsz dzienny: @Model.Vehicle.RentalStake PLN</li>
-    <br />
-    <li>Data wynajęcia: @Model.DateRented.ToShortDateString()</li>
-    <br />
-    <li>Data zwrotu: @Model.DateReturned.ToShortDateString()</li>
-    <br />
-    <li>Długość wynajmu: @Model.Length dni</li>
-    <br />
-    <li>Zniżka członkowska: @Model.Customer.MembershipType.DiscountRate %</li>
-    <br />
-    <br />
 
-    <strong><li>Całkowity koszt: @Model.TotalCost PLN</li></strong>
-</ul>
+@if (Model.Length == 0)
+{
+    <strong>Wynajem został zakończony przed datą rozpoczęcia. Faktura nie zostanie wygenerowana.</strong>
+    <br />
+    <br />
+}
+else
+{
+    <strong>Koszt wynajmu:</strong>
+    <ul>
+        <li>Czynsz dzienny: @Model.Vehicle.RentalStake PLN</li>
+        <br />
+        <li>Data wynajęcia: @Model.DateRented.ToShortDateString()</li>
+        <br />
+        <li>Data zwrotu: @Model.DateReturned.ToShortDateString()</li>
+        <br />
+        <li>Długość wynajmu: @Model.Length dni</li>
+        <br />
+        <li>Zniżka członkowska: @Model.Customer.MembershipType.DiscountRate %</li>
+        <br />
+        <br />
+
+        <strong><li>Całkowity koszt: @Model.TotalCost PLN</li></strong>
+    </ul>
+}

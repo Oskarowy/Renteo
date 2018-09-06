@@ -374,7 +374,15 @@ namespace Renteo.Controllers
                     // Jeśli użytkownik nie ma konta, poproś go o utworzenie konta
                     ViewBag.ReturnUrl = returnUrl;
                     ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+                    var membershipTypes = _context.MembershipTypes.ToList();
+
+                    var viewModel = new ExternalLoginConfirmationViewModel
+                    {
+                        MembershipTypes = membershipTypes,
+                        Email = loginInfo.Email
+                        
+                    };
+                    return View("ExternalLoginConfirmation", viewModel);
             }
         }
 
@@ -398,15 +406,29 @@ namespace Renteo.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
+
+                model.MembershipTypes = _context.MembershipTypes.ToList();
+
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
                     DrivingLicense = model.DrivingLicense
                 };
+
+                var customer = new Customer
+                {
+                    Name = model.Name,
+                    AccountId = user.Id,
+                    MembershipTypeId = model.MembershipTypeId,
+                    Birthdate = (model.Birthdate == null) ? null : model.Birthdate
+                };
+                
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    _context.Customers.Add(customer);
+                    _context.SaveChanges();
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {

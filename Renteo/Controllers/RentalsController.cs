@@ -77,6 +77,23 @@ namespace Renteo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Rental rental)
         {
+
+            if (!ModelState.IsValid)
+            {
+                var vehicles = _context.Vehicles
+                .Include(c => c.VehicleType)
+                .Where(c => c.IsRented == false)
+                .ToList();
+
+                var viewModel = new RentalFormViewModel
+                {
+                    CustomerId = rental.CustomerId,
+                    Vehicles = vehicles
+                };
+
+                return View("New", viewModel);
+            }
+
             var vehicle = _context.Vehicles.Include(v => v.VehicleType).Single(v => v.Id == rental.VehicleId);
             var customer = _context.Customers.Include(c => c.MembershipType).Single(c => c.Id == rental.CustomerId);
             rental.Vehicle = vehicle;

@@ -23,6 +23,10 @@
 <ul>
     <li>Czynsz dzienny: @Model.Vehicle.RentalStake PLN</li>
     <br />
+    <li>Data wynajęcia: @Model.DateRented.ToShortDateString()</li>
+    <br />
+    <li>Data zwrotu: @Model.DateReturned.ToShortDateString()</li>
+    <br />
     <li>Długość wynajmu: @Model.Length dni</li>
     <br />
     <li>Zniżka członkowska: @Model.Customer.MembershipType.DiscountRate %</li>

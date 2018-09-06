@@ -20,8 +20,11 @@ namespace Renteo.Models
 
         public Vehicle Vehicle { get; set; }
 
+        [Required]
         public DateTime DateRented { get; set; }
 
+        [Required]
+        [ReturnDateLaterOrEqualRentDate]
         public DateTime DateReturned { get; set; }
 
         public bool IsActive { get; set; } = true;

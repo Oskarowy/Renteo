@@ -24,6 +24,7 @@ namespace Renteo.ViewModels
         public DateTime DateRented { get; set; }
 
         [Display(Name = "Data zwrotu")]
+        [ReturnDateLaterOrEqualRentDate]
         public DateTime DateReturned { get; set; }
 
         public int Length { get; set; }

@@ -102,5 +102,10 @@ namespace Renteo.Controllers.API
 
             return Ok();
         }
+
+        public IHttpActionResult ExecuteCFM()
+        {
+            return Ok();
+        }
     }
 }

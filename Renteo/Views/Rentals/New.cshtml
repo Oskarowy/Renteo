@@ -15,12 +15,12 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DateRented)
-        @Html.TextBoxFor(m => m.DateRented, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+        @Html.EditorFor(m => m.DateRented, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(m => m.DateRented)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DateReturned)
-        @Html.TextBoxFor(m => m.DateReturned, "{0:dd/MM/yyyy}", new { @class = "form-control" })
+        @Html.EditorFor(m => m.DateReturned, new { htmlAttributes = new { @class = "form-control" } })
         @Html.ValidationMessageFor(m => m.DateReturned)
     </div>
 
@@ -33,3 +33,23 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    $(function () {
+        $('#DateRented').datepicker({
+            autoclose: true,
+            language: 'pl',
+            todayBtn: true,
+            format: 'dd/mm/yyyy'
+        });
+    });
+
+    $(function () {
+        $('#DateReturned').datepicker({
+            autoclose: true,
+            language: 'pl',
+            todayBtn: true,
+            format: 'dd/mm/yyyy'
+        });
+    });
+</script>

@@ -13,6 +13,8 @@ namespace Renteo
                         "~/Scripts/toastr.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap-datepicker.js",
+                        "~/Scripts/moment.js",
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/datatables/jquery.dataTables.js",
                         "~/Scripts/datatables/dataTables.bootstrap4.js"));
@@ -29,6 +31,7 @@ namespace Renteo
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-superhero.css",
                       "~/Content/typeahead.css",
+                      "~/Content/bootstrap-datepicker.css",
                       "~/Content/toastr.css",
                       "~/Content/datatables/css/datatables.bootstrap4.css",
                       "~/Content/site.css"));
